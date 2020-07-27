@@ -4,36 +4,51 @@ using UnityEngine;
 using UnityEngine.UI;
 [SelectionBase]
 [ExecuteInEditMode]
+[RequireComponent(typeof(Waypoint))] //así lo que acepta es un conjunto de waypoints
 public class CubeEditor : MonoBehaviour
 {
 
 
-    [SerializeField] [Range(1f, 20f)] float gridSize = 10f;
-
-    TextMesh textMeshTop;
-   // TextMesh textMeshIzq;
+    
+    Waypoint waypoint;
 
 
-    private void Start()
+    /// <summary>
+    /// Cuando sea llamado volvera desde aquí
+    /// </summary>
+    private void Awake()
     {
-       
+        //coge los componentes waypoints que enceuntre más cerca, serán lo s que estan requeridos
+        waypoint = GetComponent<Waypoint>();
     }
 
+    
     private void Update()
     {
-        
-        Vector3 snapPosition;
-    
-        snapPosition.x = Mathf.RoundToInt( transform.position.x / gridSize) * gridSize;
-        snapPosition.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-        transform.position = new Vector3(snapPosition.x, 0.0f, snapPosition.z);
+        SnapToGrid();
+        UpdateLabel();
+    }
 
-        textMeshTop = GetComponentInChildren<TextMesh>();
-       string labelText = (snapPosition.x / gridSize).ToString() + "," + (snapPosition.z / gridSize).ToString();
+    private void SnapToGrid()
+    {
+        int gridSize = waypoint.GetGridSize();
+       // gridPos.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
+      //  gridPos.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
+        transform.position = new Vector3( 
+            waypoint.GetGridPos().x,
+            0.0f,
+            waypoint.GetGridPos().y); //es y como segundo valir del bidimensional Vector2, no como altura
+    }
 
+    private void UpdateLabel()
+    {
+        TextMesh textMeshTop = GetComponentInChildren<TextMesh>(); 
+        int gridSize = waypoint.GetGridSize();        
+        string labelText = 
+            (waypoint.GetGridPos().x / gridSize).ToString() + 
+            "," + 
+            (waypoint.GetGridPos().y / gridSize).ToString(); //es y porque viene de un vector2
         textMeshTop.text = labelText;
         gameObject.name = labelText;
-
-
     }
 }
