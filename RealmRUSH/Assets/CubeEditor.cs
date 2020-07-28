@@ -29,13 +29,15 @@ public class CubeEditor : MonoBehaviour
 
     private void SnapToGrid()
     {
-        int gridSize = waypoint.GetGridSize();
-       // gridPos.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
+        
+        // gridPos.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
       //  gridPos.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
+        int gridSize = waypoint.GetGridSize();
+       
         transform.position = new Vector3( 
-            waypoint.GetGridPos().x,
+            waypoint.GetGridPos().x * gridSize,
             0.0f,
-            waypoint.GetGridPos().y); //es y como segundo valir del bidimensional Vector2, no como altura
+            waypoint.GetGridPos().y * gridSize); //es y como segundo valir del bidimensional Vector2, no como altura
     }
 
     private void UpdateLabel()
@@ -43,9 +45,9 @@ public class CubeEditor : MonoBehaviour
         TextMesh textMeshTop = GetComponentInChildren<TextMesh>(); 
         int gridSize = waypoint.GetGridSize();        
         string labelText = 
-            (waypoint.GetGridPos().x / gridSize).ToString() + 
+            waypoint.GetGridPos().x + 
             "," + 
-            (waypoint.GetGridPos().y / gridSize).ToString(); //es y porque viene de un vector2
+            waypoint.GetGridPos().y; //es y porque viene de un vector2
         textMeshTop.text = labelText;
         gameObject.name = labelText;
     }

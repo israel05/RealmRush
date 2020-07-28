@@ -11,9 +11,7 @@ using UnityEngine;
 /// PathFinder es un diccionario que contiene la información sobre cada celda del waypoint, impide que dos bloques esten 
 /// en el mismo sitio a la vez
 /// </summary>
-public class PathFinder : MonoBehaviour
-
-    
+public class PathFinder : MonoBehaviour   
 
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
@@ -21,11 +19,39 @@ public class PathFinder : MonoBehaviour
     [SerializeField] Waypoint startWaypoint;
     [SerializeField] Waypoint endWaypoint;
 
+    Vector2Int[] directions = {
+        Vector2Int.up,
+        Vector2Int.right,
+        Vector2Int.down,
+        Vector2Int.left
+    };
+
+
+
 
     void Start()
     {
         LoadBlocks();
         ColorStartAndEnd();
+        ExploreNeighbours();
+
+    }
+
+    private void ExploreNeighbours()
+    {
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int explorationCoordinates = startWaypoint.GetGridPos() + direction;
+            print("Explorando a mi vecino :" + explorationCoordinates);
+            try
+            {
+                grid[explorationCoordinates].SetTopColor(Color.yellow);
+            }
+            catch
+            {
+                print("No había celdas al lado");
+            }
+        }
     }
 
     private void ColorStartAndEnd()
@@ -48,17 +74,9 @@ public class PathFinder : MonoBehaviour
             {
                 Debug.LogWarning("Overlapping block " + waypoint + "no añadido");
             }else
-            {
-                /*               
-                if (grid.Keys.First() == gridPos )
-                    {
-                    print("He encontrado el que es el último");
-                    waypoint.SetTopColor(Color.black);
-                }
-                */
+            {                
                 grid.Add(gridPos, waypoint);
-                
-            }                     
+             }                     
         }
         
     }
