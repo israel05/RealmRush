@@ -19,6 +19,8 @@ public class PathFinder : MonoBehaviour
     [SerializeField] Waypoint startWaypoint;
     [SerializeField] Waypoint endWaypoint;
 
+    Queue<Waypoint> queue = new Queue<Waypoint>();
+    bool isRunning = true; //indica la parada del algoritmo de busqueda
     Vector2Int[] directions = {
         Vector2Int.up,
         Vector2Int.right,
@@ -33,8 +35,30 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
-        ExploreNeighbours();
+        //ExploreNeighbours();
+        PathFind();
 
+    }
+
+    private void PathFind()
+    {
+        queue.Enqueue(startWaypoint);
+        while (queue.Count > 0)
+        {
+            var searchCenter = queue.Dequeue(); //saca el elmento que usas como centro para buscar alrededor
+            print("Centro de búsqueda en " + searchCenter);
+            HaltIfEndFound(searchCenter);
+        }
+        print("FInalizada la busqueda de caminos");
+    }
+
+    private void HaltIfEndFound(Waypoint searchCenter)
+    {
+        if (searchCenter == endWaypoint)
+        {
+            print("Buscando el último nodo, así que fin");
+            isRunning = false; //para el algoritmo
+        }
     }
 
     private void ExploreNeighbours()
