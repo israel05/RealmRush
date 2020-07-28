@@ -12,21 +12,15 @@ public class Waypoint : MonoBehaviour
   /// Devuelve un vector bidimensional con la posición del objeto waypoint
   /// </summary>
   /// <returns>Vector bidimensional de posiciones multiples de 10</returns>
-  public Vector2 GetGridPos()
+  public Vector2Int GetGridPos()
     {
            return new Vector2Int(
             Mathf.RoundToInt(transform.position.x / gridSize) * gridSize,
             Mathf.RoundToInt(transform.position.z / gridSize) * gridSize
             );
     }
-
     public int GetGridSize()
     {
         return gridSize;
-    }
-
-    void Update()
-    {
-        
     }
 }
