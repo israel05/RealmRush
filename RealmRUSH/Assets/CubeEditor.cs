@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class CubeEditor : MonoBehaviour
 {
 
-
-    
     Waypoint waypoint;
 
 
