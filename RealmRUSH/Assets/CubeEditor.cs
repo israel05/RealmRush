@@ -42,8 +42,7 @@ public class CubeEditor : MonoBehaviour
 
     private void UpdateLabel()
     {
-        TextMesh textMeshTop = GetComponentInChildren<TextMesh>(); 
-        int gridSize = waypoint.GetGridSize();        
+        TextMesh textMeshTop = GetComponentInChildren<TextMesh>();              
         string labelText = 
             waypoint.GetGridPos().x + 
             "," + 

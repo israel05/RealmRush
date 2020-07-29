@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 
 
 ////
 /// <summary>
-/// PathFinder es un diccionario que contiene la información sobre cada celda del waypoint, impide que dos bloques esten 
+/// BreadthFirstSearcher es un diccionario que contiene la información sobre cada celda del waypoint, impide que dos bloques esten 
 /// en el mismo sitio a la vez
 /// </summary>
-public class PathFinder : MonoBehaviour   
+public class Pathfinder : MonoBehaviour
 
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
@@ -19,8 +21,10 @@ public class PathFinder : MonoBehaviour
     [SerializeField] Waypoint startWaypoint;
     [SerializeField] Waypoint endWaypoint;
 
+    Waypoint searchCenter; //el que esta trabajando ahora
     Queue<Waypoint> queue = new Queue<Waypoint>();
     bool isRunning = true; //indica la parada del algoritmo de busqueda
+
     Vector2Int[] directions = {
         Vector2Int.up,
         Vector2Int.right,
@@ -28,53 +32,82 @@ public class PathFinder : MonoBehaviour
         Vector2Int.left
     };
 
+    private List<Waypoint> path = new List<Waypoint>(); //el camino 
 
-
-
-    void Start()
+    public List<Waypoint> getPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        //ExploreNeighbours();
-        PathFind();
-
+        BreadthFirstSearch();
+        CreatePath();
+        //  PintarCamino();
+        return path;
     }
 
-    private void PathFind()
+    private void CreatePath()
+    {
+        path.Add(endWaypoint);
+        Waypoint previous = endWaypoint.exploredFrom;
+        while (previous != startWaypoint)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+        path.Add(startWaypoint);
+        path.Reverse();
+        //invertir la lista
+    }
+        
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startWaypoint);
-        while (queue.Count > 0)
+        while (queue.Count > 0 && isRunning)
         {
-            var searchCenter = queue.Dequeue(); //saca el elmento que usas como centro para buscar alrededor
+            searchCenter = queue.Dequeue(); //saca el elmento que usas como centro para buscar alrededor
+            searchCenter.isExplored = true; //marca como explorado, asi no se volvera a encolar
             print("Centro de búsqueda en " + searchCenter);
-            HaltIfEndFound(searchCenter);
+            HaltIfEndFound();
+            //busca al resto de los elementos
+            ExploreNeighbours();
+
         }
         print("FInalizada la busqueda de caminos");
     }
 
-    private void HaltIfEndFound(Waypoint searchCenter)
+    private void HaltIfEndFound()
     {
         if (searchCenter == endWaypoint)
         {
-            print("Buscando el último nodo, así que fin");
+            print("El que estoy buscando es el mismo que el destino, FIN");
             isRunning = false; //para el algoritmo
         }
     }
 
     private void ExploreNeighbours()
     {
-        foreach (Vector2Int direction in directions)
+        if (!isRunning) { return; }
+        foreach (Vector2Int direction in directions)        {
+            Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;           
+            if (grid.ContainsKey(neighbourCoordinates))
+            {
+                QueueNewNeighbours(neighbourCoordinates);
+            }            
+        }
+    }
+
+    private void QueueNewNeighbours(Vector2Int neighbourCoordinates)
+    {
+        Waypoint neighbour = grid[neighbourCoordinates];       
+        if (neighbour.isExplored || queue.Contains(neighbour))
         {
-            Vector2Int explorationCoordinates = startWaypoint.GetGridPos() + direction;
-            print("Explorando a mi vecino :" + explorationCoordinates);
-            try
-            {
-                grid[explorationCoordinates].SetTopColor(Color.yellow);
-            }
-            catch
-            {
-                print("No había celdas al lado");
-            }
+            print("no encolo a :" + neighbour + " pues ya fue explorado antes");
+            
+        }
+        else
+        {
+            queue.Enqueue(neighbour);
+            print("Encolando :" + neighbour);
+            neighbour.exploredFrom = searchCenter;
         }
     }
 
@@ -82,6 +115,7 @@ public class PathFinder : MonoBehaviour
     {
         startWaypoint.SetTopColor(Color.cyan);
         endWaypoint.SetTopColor(Color.black);
+       
 
     }
 
@@ -90,9 +124,7 @@ public class PathFinder : MonoBehaviour
         //todo lo que sea waypoint se metera en esta lista
         var waypoints = FindObjectsOfType<Waypoint>();
         foreach (Waypoint waypoint in waypoints)
-        {
-
-            
+        {                    
             Vector2Int gridPos = waypoint.GetGridPos();          
             if (grid.ContainsKey(gridPos))
             {
