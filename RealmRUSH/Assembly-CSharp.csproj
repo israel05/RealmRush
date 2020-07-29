@@ -63,10 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CubeEditor.cs" />
-    <Compile Include="Assets\EnemyMovement.cs" />
-    <Compile Include="Assets\Pathfinder.cs" />
-    <Compile Include="Assets\Waypoint.cs" />
+    <Compile Include="Assets\SpaceSkies Free\Demo\Scripts\LookCamera.cs" />
+    <Compile Include="Assets\SpaceSkies Free\Demo\Scripts\SkyboxChanger.cs" />
+    <Compile Include="Assets\scripts\CubeEditor.cs" />
+    <Compile Include="Assets\scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\scripts\Pathfinder.cs" />
+    <Compile Include="Assets\scripts\Torreta.cs" />
+    <Compile Include="Assets\scripts\Waypoint.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
