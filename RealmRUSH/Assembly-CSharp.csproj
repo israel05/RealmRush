@@ -71,6 +71,7 @@
     <Compile Include="Assets\scripts\Pathfinder.cs" />
     <Compile Include="Assets\scripts\Torreta.cs" />
     <Compile Include="Assets\scripts\Waypoint.cs" />
+    <Compile Include="Assets\scripts\enemySpawner.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
