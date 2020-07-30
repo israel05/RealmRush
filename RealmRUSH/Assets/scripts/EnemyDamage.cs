@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] int hitPoints = 10;
     void Start()
     {
         
@@ -12,6 +14,25 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        print("¡Tocado!");
+        ProcessHit();
+        if (hitPoints < 0)
+        {
+            KillEnemy();
+        }
+    }
+
+   
+
+    void ProcessHit()
+    {
+        hitPoints--;
+        print("vida :" + hitPoints);
+    }
+    
+    
+    
+    private void KillEnemy()
+    {
+        Destroy(gameObject);
     }
 }
