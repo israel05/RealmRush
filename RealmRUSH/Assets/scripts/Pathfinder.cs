@@ -34,14 +34,23 @@ public class Pathfinder : MonoBehaviour
 
     private List<Waypoint> path = new List<Waypoint>(); //el camino 
 
+
+
     public List<Waypoint> getPath()
+    {
+        if (path.Count == 0)
+        {
+            CalcularElCamino();
+        }
+        return path;
+    }
+
+    private void CalcularElCamino()
     {
         LoadBlocks();
         ColorStartAndEnd();
         BreadthFirstSearch();
         CreatePath();
-        //  PintarCamino();
-        return path;
     }
 
     private void CreatePath()
@@ -63,22 +72,19 @@ public class Pathfinder : MonoBehaviour
         queue.Enqueue(startWaypoint);
         while (queue.Count > 0 && isRunning)
         {
-            searchCenter = queue.Dequeue(); //saca el elmento que usas como centro para buscar alrededor
-            searchCenter.isExplored = true; //marca como explorado, asi no se volvera a encolar
-            print("Centro de búsqueda en " + searchCenter);
+            searchCenter = queue.Dequeue();
+            searchCenter.isExplored = true; 
             HaltIfEndFound();
-            //busca al resto de los elementos
             ExploreNeighbours();
 
         }
-        print("FInalizada la busqueda de caminos");
+       
     }
 
     private void HaltIfEndFound()
     {
         if (searchCenter == endWaypoint)
         {
-            print("El que estoy buscando es el mismo que el destino, FIN");
             isRunning = false; //para el algoritmo
         }
     }
@@ -100,13 +106,11 @@ public class Pathfinder : MonoBehaviour
         Waypoint neighbour = grid[neighbourCoordinates];       
         if (neighbour.isExplored || queue.Contains(neighbour))
         {
-            print("no encolo a :" + neighbour + " pues ya fue explorado antes");
             
         }
         else
         {
             queue.Enqueue(neighbour);
-            print("Encolando :" + neighbour);
             neighbour.exploredFrom = searchCenter;
         }
     }
@@ -121,14 +125,12 @@ public class Pathfinder : MonoBehaviour
 
     private void LoadBlocks()
     {
-        //todo lo que sea waypoint se metera en esta lista
         var waypoints = FindObjectsOfType<Waypoint>();
         foreach (Waypoint waypoint in waypoints)
         {                    
             Vector2Int gridPos = waypoint.GetGridPos();          
             if (grid.ContainsKey(gridPos))
             {
-                Debug.LogWarning("Overlapping block " + waypoint + "no añadido");
             }else
             {                
                 grid.Add(gridPos, waypoint);

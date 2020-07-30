@@ -20,17 +20,13 @@ public class EnemyDamage : MonoBehaviour
             KillEnemy();
         }
     }
-
-   
+       
 
     void ProcessHit()
     {
-        hitPoints--;
-        print("vida :" + hitPoints);
+        hitPoints--;      
     }
-    
-    
-    
+        
     private void KillEnemy()
     {
         Destroy(gameObject);
