@@ -47,8 +47,7 @@ public class Pathfinder : MonoBehaviour
 
     private void CalcularElCamino()
     {
-        LoadBlocks();
-        ColorStartAndEnd();
+        LoadBlocks();     
         BreadthFirstSearch();
         CreatePath();
     }
@@ -115,13 +114,6 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private void ColorStartAndEnd()
-    {
-        startWaypoint.SetTopColor(Color.cyan);
-        endWaypoint.SetTopColor(Color.black);
-       
-
-    }
 
     private void LoadBlocks()
     {

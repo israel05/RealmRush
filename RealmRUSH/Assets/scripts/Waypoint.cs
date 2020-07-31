@@ -27,17 +27,10 @@ public class Waypoint : MonoBehaviour
         return gridSize;
     }
 
-    public void Update()
+    private void OnMouseOver()
     {
-        if (isExplored)
-        {
-            SetTopColor(exploredColor);
-        }
+        print("Estoy sobre " + gameObject.name);
     }
 
-    public void SetTopColor(Color colorin)
-    {
-        MeshRenderer topMeshRenderer =  transform.Find("QuadBase").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = colorin;
-    }
+
 }
