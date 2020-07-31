@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Waypoint : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class Waypoint : MonoBehaviour
     public bool isExplored = false;
     public Waypoint exploredFrom;
     public bool isPlaceable = true;
+
+    [SerializeField] Torreta towerPrefab;
+
+
 
   ////
   /// <summary>
@@ -35,7 +40,18 @@ public class Waypoint : MonoBehaviour
         {        
             if (isPlaceable)
             {
+                Vector3 posTemp = new Vector3(0f,0f,0f);
+                //debug TODO un bug que hace que las torretas se coloquen desplazadas por este margen
+                posTemp = transform.position;
+                posTemp.x = posTemp.x - 39f;
+                posTemp.y = posTemp.y - 63f;
+                posTemp.z = posTemp.z + 42f;
+                print("pos Temp:" + posTemp.x + " " + posTemp.y + " " + posTemp.z);
+                //todo eleminar el debug
+                Instantiate(towerPrefab, posTemp, Quaternion.identity);
                 print("Estoy sobre " + gameObject.name);
+                isPlaceable = false;
+
             } else
             {
                 print("No puedo poner nada sobre eso, BLOQUEADO " + gameObject.name);
@@ -43,4 +59,5 @@ public class Waypoint : MonoBehaviour
                 
          }              
     }
+
  }

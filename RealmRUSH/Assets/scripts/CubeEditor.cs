@@ -16,7 +16,6 @@ public class CubeEditor : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        //coge los componentes waypoints que enceuntre más cerca, serán lo s que estan requeridos
         waypoint = GetComponent<Waypoint>();
     }
 
