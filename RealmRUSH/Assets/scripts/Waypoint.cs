@@ -9,6 +9,7 @@ public class Waypoint : MonoBehaviour
     Vector2Int gridPos;
     public bool isExplored = false;
     public Waypoint exploredFrom;
+    public bool isPlaceable = true;
 
   ////
   /// <summary>
@@ -27,10 +28,19 @@ public class Waypoint : MonoBehaviour
         return gridSize;
     }
 
+
     private void OnMouseOver()
     {
-        print("Estoy sobre " + gameObject.name);
+        if (Input.GetMouseButtonDown(0))
+        {        
+            if (isPlaceable)
+            {
+                print("Estoy sobre " + gameObject.name);
+            } else
+            {
+                print("No puedo poner nada sobre eso, BLOQUEADO " + gameObject.name);
+            }
+                
+         }              
     }
-
-
-}
+ }
