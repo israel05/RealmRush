@@ -7,8 +7,9 @@ public class enemySpawner : MonoBehaviour
     [Range(0.1f,120f)]
     [SerializeField] float secondsBetweenSpawns = 2f;
     [SerializeField] EnemyMovement enemyPrefab; //al poner enemyMovement que es un script
+
     // propio de enemigo, nos eviatamos poner cualquier gameobject que es genérico
-    
+   
     void Start()
     {
         //lanza la corutina

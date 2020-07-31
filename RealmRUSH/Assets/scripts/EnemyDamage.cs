@@ -7,6 +7,7 @@ public class EnemyDamage : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] int hitPoints = 10;
+    [SerializeField] ParticleSystem hitParticlePrefab, deadParticlePrefab;
     void Start()
     {
         
@@ -24,12 +25,14 @@ public class EnemyDamage : MonoBehaviour
 
     void ProcessHit()
     {
-        hitPoints--;      
+        hitPoints--;
+        hitParticlePrefab.Play();
     }
         
     private void KillEnemy()
     {
         Destroy(gameObject);
-        print("Enemigo destruido");
+        deadParticlePrefab.Play();
+
     }
 }
