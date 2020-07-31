@@ -30,5 +30,6 @@ public class EnemyDamage : MonoBehaviour
     private void KillEnemy()
     {
         Destroy(gameObject);
+        print("Enemigo destruido");
     }
 }
