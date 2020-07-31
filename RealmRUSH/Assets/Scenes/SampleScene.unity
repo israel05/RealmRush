@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsBetweenSpawns: 2
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 2027149760}
 --- !u!4 &558681182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4320373430648300, guid: eaf585f6d1c526346860421fbfbc3de4,
@@ -8507,43 +8507,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1111171400}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2027149758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1289942997295908, guid: 04f81ff9814844ccfa08226f8d46a3f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2082986971}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2027149759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4907987154143992, guid: 04f81ff9814844ccfa08226f8d46a3f4,
     type: 3}
   m_PrefabInstance: {fileID: 2082986971}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2027149760
+--- !u!114 &2027149760 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2027149760, guid: 04f81ff9814844ccfa08226f8d46a3f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2082986971}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027149758}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32848790e5ab1d642a64e60bc1584fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2027149761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027149758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ccd57951cb0d654c815d48a448bbcba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 5
 --- !u!4 &2032744086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4320373430648300, guid: eaf585f6d1c526346860421fbfbc3de4,
@@ -8779,9 +8760,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114941686308246830, guid: 04f81ff9814844ccfa08226f8d46a3f4, type: 3}
-    - {fileID: 114078703179129330, guid: 04f81ff9814844ccfa08226f8d46a3f4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04f81ff9814844ccfa08226f8d46a3f4, type: 3}
 --- !u!4 &2092911917 stripped
 Transform:
