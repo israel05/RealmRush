@@ -69,6 +69,7 @@
     <Compile Include="Assets\scripts\EnemyDamage.cs" />
     <Compile Include="Assets\scripts\EnemyMovement.cs" />
     <Compile Include="Assets\scripts\Pathfinder.cs" />
+    <Compile Include="Assets\scripts\PlayerHealth.cs" />
     <Compile Include="Assets\scripts\Torreta.cs" />
     <Compile Include="Assets\scripts\TowerFactory.cs" />
     <Compile Include="Assets\scripts\Waypoint.cs" />
