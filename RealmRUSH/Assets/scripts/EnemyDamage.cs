@@ -8,11 +8,7 @@ public class EnemyDamage : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] int hitPoints = 10;
     [SerializeField] ParticleSystem hitParticlePrefab, deadParticlePrefab;
-    void Start()
-    {
-        
-    }
-
+  
     private void OnParticleCollision(GameObject other)
     {
         ProcessHit();

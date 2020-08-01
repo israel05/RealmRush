@@ -7,9 +7,10 @@ public class enemySpawner : MonoBehaviour
     [Range(0.1f,120f)]
     [SerializeField] float secondsBetweenSpawns = 2f;
     [SerializeField] EnemyMovement enemyPrefab; //al poner enemyMovement que es un script
+    [SerializeField] Transform enemyParentTransfor;
 
     // propio de enemigo, nos eviatamos poner cualquier gameobject que es genérico
-   
+
     void Start()
     {
         //lanza la corutina
@@ -20,8 +21,10 @@ public class enemySpawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity); //spawn el enemigo, en la posicion del enemigo inicial, con rotacion ninguna
+           
 
+            var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity); //spawn el enemigo, en la posicion del enemigo inicial, con rotacion ninguna
+            newEnemy.transform.parent = enemyParentTransfor;
             yield return new WaitForSeconds(secondsBetweenSpawns); 
         }               
     }

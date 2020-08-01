@@ -10,7 +10,7 @@ public class TowerFactory : MonoBehaviour
 
     [SerializeField] Torreta towerPrefab;
     [SerializeField] int towerLimit = 5;
-    
+    [SerializeField] Transform towerParentTransfor;
    
     public void AddTower(Waypoint baseWaypoint)
     {
@@ -41,7 +41,10 @@ public class TowerFactory : MonoBehaviour
     {
         
         var newTower = Instantiate(towerPrefab, posTemp, Quaternion.identity);
+        newTower.transform.parent = towerParentTransfor; //
         baseWaypoint.isPlaceable = false;
+
+
         //ahora tienes una torreta más en la cola, que es precisamente esa, o mejor dicho
         // precisamente la que está en ese waypoint
 
