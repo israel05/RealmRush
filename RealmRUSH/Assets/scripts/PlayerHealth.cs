@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int healthDecrease = 1;
     [SerializeField] Text healthText ;
     // Start is called before the first frame update
+    [SerializeField] AudioClip playerDamageSFX;
 
 
     private void Start()
@@ -23,5 +24,9 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= healthDecrease;
         healthText.text = health.ToString();
+        //suna el golpe en la base
+        GetComponent<AudioSource>().PlayOneShot(playerDamageSFX);
+
+
     }
 }

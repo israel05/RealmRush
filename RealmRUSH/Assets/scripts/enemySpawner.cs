@@ -11,15 +11,18 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] EnemyMovement enemyPrefab; //al poner enemyMovement que es un script
     [SerializeField] Transform enemyParentTransfor;
     [SerializeField] Text enemySpawnCounter;
+    [SerializeField] AudioClip spawnedEnemySFX;
+
     int contadorEnemySpawnCounter = 0;
-
+    
     // propio de enemigo, nos eviatamos poner cualquier gameobject que es genérico
-
-    void Start()
+        void Start()
     {
         //lanza la corutina
         StartCoroutine(RepeatedlySpawnEnemies());
-    
+        enemySpawnCounter.text = contadorEnemySpawnCounter.ToString();
+
+
     }
 
 
@@ -28,8 +31,9 @@ public class enemySpawner : MonoBehaviour
     {
         while (true)
         {
-            var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity); //spawn el enemigo, en la posicion del enemigo inicial, con rotacion ninguna
             IncrementoContadorEnemigosEnPantalla();
+            GetComponent<AudioSource>().PlayOneShot(spawnedEnemySFX);
+            var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity); //spawn el enemigo, en la posicion del enemigo inicial, con rotacion ninguna
             newEnemy.transform.parent = enemyParentTransfor;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }

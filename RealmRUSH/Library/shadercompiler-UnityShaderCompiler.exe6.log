@@ -1,2 +1,14 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 2 plat 4 at MultiScaleVOUpsample.compute(37): failed to open source file: 'Packages/com.unity.postprocessing/PostProcessing/Shaders/StdLib.hlsl'
+  api=4 insize=18353 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 4 at Lut3DBaker.compute(1): failed to open source file: 'Packages/com.unity.postprocessing/PostProcessing/Shaders/StdLib.hlsl'
+  api=4 insize=5017 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 4 at MultiScaleVORender.compute(30): failed to open source file: 'Packages/com.unity.postprocessing/PostProcessing/Shaders/StdLib.hlsl'
+  api=4 insize=10935 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 4 at ExposureHistogram.compute(7): failed to open source file: 'Packages/com.unity.postprocessing/PostProcessing/Shaders/StdLib.hlsl'
+  api=4 insize=3246 outsize=0 ok=0
