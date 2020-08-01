@@ -29,17 +29,23 @@ public class EnemyDamage : MonoBehaviour
 
     void ProcessHit()
     {
-        myAudioSource.PlayOneShot(enemyHitSFX);
         hitPoints--;
         hitParticlePrefab.Play();
+        myAudioSource.PlayOneShot(enemyHitSFX);
     }
         
+    /// <summary>
+    /// Hay que hacer una instancia o los sonidos y animaciones moriran al morir el objeto
+    /// demasiado rápido
+    /// </summary>
+    
     private void KillEnemy()
     {
         var vfx = Instantiate(deadParticlePrefab, transform.position, Quaternion.identity);
         vfx.Play();
        // myAudioSource.PlayOneShot(enemyDeathSFX);
         Destroy(vfx.gameObject, vfx.main.duration);
+        AudioSource.PlayClipAtPoint(enemyDeathSFX, Camera.main.transform.position);
         Destroy(gameObject);
     }
 }
