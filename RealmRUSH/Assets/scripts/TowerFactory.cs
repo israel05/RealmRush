@@ -44,16 +44,32 @@ public class TowerFactory : MonoBehaviour
         baseWaypoint.isPlaceable = false;
         //ahora tienes una torreta más en la cola, que es precisamente esa, o mejor dicho
         // precisamente la que está en ese waypoint
+
+        newTower.baseWaypoint = baseWaypoint;
+        baseWaypoint.isPlaceable = false;
         colaDeTorretas.Enqueue(newTower);
     }
 
 
-    private void MoveExistingTower(Waypoint baseWaypoint)
+    private void MoveExistingTower(Waypoint newBaseWaypoint)
     {
         var oldTower = colaDeTorretas.Dequeue(); //cojo la que esta más abajo
 
+        oldTower.baseWaypoint.isPlaceable = true;
+        newBaseWaypoint.isPlaceable = false;
 
-        baseWaypoint.isPlaceable = true;
+        oldTower.baseWaypoint = newBaseWaypoint;
+
+        //debug TODO un bug que hace que las torretas se coloquen desplazadas por este margen
+        Vector3 posTemp = new Vector3(0f, 0f, 0f);
+        posTemp = newBaseWaypoint.transform.position;
+        posTemp.x = posTemp.x - 39f;
+        posTemp.y = posTemp.y - 63f;
+        posTemp.z = posTemp.z + 42f;
+        print("pos Temp:" + posTemp.x + " " + posTemp.y + " " + posTemp.z);
+        // otra vez el mismo error
+        oldTower.transform.position = posTemp;
+
         colaDeTorretas.Enqueue(oldTower); //la pongo en la cabeza
 
         
