@@ -2405,6 +2405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsBetweenSpawns: 2
   enemyPrefab: {fileID: 2027149760}
+  enemyParentTransfor: {fileID: 1358333206}
 --- !u!4 &558681182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4320373430648300, guid: eaf585f6d1c526346860421fbfbc3de4,
@@ -3984,6 +3985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1025909874}
   - component: {fileID: 1025909875}
+  - component: {fileID: 1025909876}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -4082,6 +4084,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWaypoint: {fileID: 828456306}
   endWaypoint: {fileID: 884654253}
+--- !u!114 &1025909876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025909873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f5ce6d89f12ae4d89ad2778491cb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 3360327556065639591, guid: 4e1889d079c42c741ab57d823d7e24a9,
+    type: 3}
+  towerLimit: 5
+  towerParentTransfor: {fileID: 640464090}
 --- !u!4 &1056887497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5045163644587825307, guid: caed453eacc5cff4680597fdd85558e5,

@@ -42,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2992960039655704751}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 376e9644094363e4ab0e72c9f7136286, type: 3}
   m_Name: 
@@ -63,8 +63,6 @@ MonoBehaviour:
   isExplored: 0
   exploredFrom: {fileID: 0}
   isPlaceable: 1
-  towerPrefab: {fileID: 3360327556065639591, guid: 4e1889d079c42c741ab57d823d7e24a9,
-    type: 3}
 --- !u!65 &7367041047833236958
 BoxCollider:
   m_ObjectHideFlags: 0
