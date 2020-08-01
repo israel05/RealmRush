@@ -22,9 +22,9 @@ public class EnemyMovement : MonoBehaviour
         {
             
             transform.position = waypoint.transform.position;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
-            }
+     }
     
     // Update is called once per frame
     void Update()

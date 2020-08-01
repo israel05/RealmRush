@@ -13,6 +13,8 @@ public class Torreta : MonoBehaviour
     //Estado // para que cambie segund el enemigo
     [SerializeField] Transform targetEnemy;
 
+    public Waypoint baseWaypoint; //donde la torreta se encuentre, en que waypoint
+
     void Update()
     {
         setTargetEnemy();
