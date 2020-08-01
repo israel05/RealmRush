@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-[SelectionBase]
+
 [ExecuteInEditMode]
+[SelectionBase]
+
 [RequireComponent(typeof(Waypoint))] //así lo que acepta es un conjunto de waypoints
 public class CubeEditor : MonoBehaviour
 {

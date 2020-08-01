@@ -15,19 +15,11 @@ public class TowerFactory : MonoBehaviour
     public void AddTower(Waypoint baseWaypoint)
     {
         int numTowers = colaDeTorretas.Count;
-        print("Llevo todas estas torres puestas : " + numTowers);
-
-        //debug TODO un bug que hace que las torretas se coloquen desplazadas por este margen
-        Vector3 posTemp = new Vector3(0f, 0f, 0f);
-        posTemp = baseWaypoint.transform.position;
-        posTemp.x = posTemp.x - 39f;
-        posTemp.y = posTemp.y - 63f;
-        posTemp.z = posTemp.z + 42f;
-        print("pos Temp:" + posTemp.x + " " + posTemp.y + " " + posTemp.z);
-        //todo eleminar el debu
+       
+        
         if (numTowers < towerLimit)
         {
-            InstatiateNewTower(baseWaypoint, posTemp);
+            InstatiateNewTower(baseWaypoint);
         }
         else
         {
@@ -37,10 +29,10 @@ public class TowerFactory : MonoBehaviour
 
     }
 
-    private void InstatiateNewTower(Waypoint baseWaypoint, Vector3 posTemp)
+    private void InstatiateNewTower(Waypoint baseWaypoint)
     {
-        
-        var newTower = Instantiate(towerPrefab, posTemp, Quaternion.identity);
+
+        var newTower = Instantiate(towerPrefab, baseWaypoint.transform.position, Quaternion.identity);
         newTower.transform.parent = towerParentTransfor; //
         baseWaypoint.isPlaceable = false;
 
@@ -63,15 +55,7 @@ public class TowerFactory : MonoBehaviour
 
         oldTower.baseWaypoint = newBaseWaypoint;
 
-        //debug TODO un bug que hace que las torretas se coloquen desplazadas por este margen
-        Vector3 posTemp = new Vector3(0f, 0f, 0f);
-        posTemp = newBaseWaypoint.transform.position;
-        posTemp.x = posTemp.x - 39f;
-        posTemp.y = posTemp.y - 63f;
-        posTemp.z = posTemp.z + 42f;
-        print("pos Temp:" + posTemp.x + " " + posTemp.y + " " + posTemp.z);
-        // otra vez el mismo error
-        oldTower.transform.position = posTemp;
+        oldTower.transform.position = newBaseWaypoint.transform.position;
 
         colaDeTorretas.Enqueue(oldTower); //la pongo en la cabeza
 

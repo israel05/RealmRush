@@ -13,7 +13,7 @@ public class enemySpawner : MonoBehaviour
     [SerializeField] Text enemySpawnCounter;
     [SerializeField] AudioClip spawnedEnemySFX;
 
-    int contadorEnemySpawnCounter = 0;
+    int contadorEnemySpawnCounter;
     
     // propio de enemigo, nos eviatamos poner cualquier gameobject que es genérico
         void Start()

@@ -11,6 +11,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] AudioClip enemyHitSFX;
     [SerializeField] AudioClip enemyDeathSFX;
     AudioSource myAudioSource;
+    [SerializeField] Collider collisionMesh;
 
     private void Start()
     {

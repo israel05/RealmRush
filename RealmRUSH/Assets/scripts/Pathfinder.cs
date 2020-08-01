@@ -81,9 +81,9 @@ public class Pathfinder : MonoBehaviour
         while (queue.Count > 0 && isRunning)
         {
             searchCenter = queue.Dequeue();
-            searchCenter.isExplored = true; 
-            HaltIfEndFound();
+            HaltIfEndFound();                       
             ExploreNeighbours();
+            searchCenter.isExplored = true;
 
         }
        
@@ -100,6 +100,7 @@ public class Pathfinder : MonoBehaviour
     private void ExploreNeighbours()
     {
         if (!isRunning) { return; }
+
         foreach (Vector2Int direction in directions)        {
             Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;           
             if (grid.ContainsKey(neighbourCoordinates))
@@ -129,7 +130,7 @@ public class Pathfinder : MonoBehaviour
         var waypoints = FindObjectsOfType<Waypoint>();
         foreach (Waypoint waypoint in waypoints)
         {                    
-            Vector2Int gridPos = waypoint.GetGridPos();          
+            var gridPos = waypoint.GetGridPos();          
             if (grid.ContainsKey(gridPos))
             {
             }else
