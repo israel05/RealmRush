@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d0faccb21aa9d4683049dcd9fb39da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  healthDecrease: 1
+  health: 100
+  healthDecrease: 2
   healthText: {fileID: 0}
   playerDamageSFX: {fileID: 8300000, guid: 3eb4d5fd53584174dbb315e7976e48a9, type: 3}

@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] int health = 10;
     [SerializeField] int healthDecrease = 1;
-    [SerializeField] Text healthText ;
+    [SerializeField] Text healthText;
     // Start is called before the first frame update
     [SerializeField] AudioClip playerDamageSFX;
 
@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         healthText.text = health.ToString();
+    
     }
 
     private void OnTriggerEnter(Collider other)

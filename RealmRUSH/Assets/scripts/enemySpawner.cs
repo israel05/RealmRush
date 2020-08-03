@@ -6,42 +6,37 @@ using UnityEngine.UI;
 
 public class enemySpawner : MonoBehaviour
 {
-    [Range(0.1f,120f)]
-    [SerializeField] float secondsBetweenSpawns = 2f;
-    [SerializeField] EnemyMovement enemyPrefab; //al poner enemyMovement que es un script
-    [SerializeField] Transform enemyParentTransfor;
-    [SerializeField] Text enemySpawnCounter;
+    [Range(0.1f, 120f)]
+    [SerializeField] float secondsBetweenSpawns = 3f;
+    [SerializeField] EnemyMovement enemyPrefab;
+    [SerializeField] Transform enemyParentTransform;
+    [SerializeField] Text spawnedEnemies;
     [SerializeField] AudioClip spawnedEnemySFX;
+    int score;
 
-    int contadorEnemySpawnCounter;
-    
-    // propio de enemigo, nos eviatamos poner cualquier gameobject que es genérico
-        void Start()
+    // Use this for initialization
+    void Start()
     {
-        //lanza la corutina
         StartCoroutine(RepeatedlySpawnEnemies());
-        enemySpawnCounter.text = contadorEnemySpawnCounter.ToString();
-
-
+        spawnedEnemies.text = score.ToString();
     }
 
 
-
-    private IEnumerator RepeatedlySpawnEnemies()
+    IEnumerator RepeatedlySpawnEnemies()
     {
-        while (true)
+        while (true) // forever
         {
-            IncrementoContadorEnemigosEnPantalla();
+            AddScore();
             GetComponent<AudioSource>().PlayOneShot(spawnedEnemySFX);
-            var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity); //spawn el enemigo, en la posicion del enemigo inicial, con rotacion ninguna
-            newEnemy.transform.parent = enemyParentTransfor;
+            var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            newEnemy.transform.parent = enemyParentTransform;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }
 
-    private void IncrementoContadorEnemigosEnPantalla()
+    private void AddScore()
     {
-        contadorEnemySpawnCounter++;
-        enemySpawnCounter.text = contadorEnemySpawnCounter.ToString();
+        score++;
+        spawnedEnemies.text = score.ToString();
     }
 }
